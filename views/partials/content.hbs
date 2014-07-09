@@ -1,0 +1,32 @@
+  </head>
+  <body>
+    <header class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"/>
+            <span class="icon-bar"/>
+            <span class="icon-bar"/>
+          </button>
+          <a class="navbar-brand" herf='/'>计算设备检索</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href='/'>主页</a></li>
+            <li><a href='/notebook'>笔记本</a></li>
+            <li><a href='/tablet'>平板电脑</a></li>
+            <li><a href='/phone'>手机</a></li>
+            <li><a href='/user'>用户</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{#if user}}
+              <li><a href='/user/{{id}}'>{{name}}</a></li>
+            {{else}}
+              <li><a href='/login'>登录</a></li>
+              <li><a href='/register'>注册</a></li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="container body-content">

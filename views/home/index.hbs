@@ -1,10 +1,8 @@
-extends ../layout
-
-block content
-  h1= title
-  p Welcome to #{title}
-
-block scripts
-  script(type='text/javascript')
-    //
+  {{title}}
+  <p> Welcome to {{title}}</p>
+  
+{{#extend "scripts"}}
+  <script type='text/javascript'>
       alert('abc');
+  </script>
+{{/extend}}
