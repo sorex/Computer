@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 
 var hbs          = require('hbs');
+var marked       = require('marked');
 
 var routes    = require('./routes/index');
 var users     = require('./routes/users');
@@ -21,13 +22,13 @@ app.set('view engine', 'hbs');
 
 var blocks = {};
 
-hbs.registerHelper('extend', function(name, context) {
+hbs.registerHelper('extend', function(name, options) {
     var block = blocks[name];
     if (!block) {
         block = blocks[name] = [];
     }
 
-    block.push(context.fn(this)); // for older versions of handlebars, use block.push(context(this));
+    block.push(options.fn(this)); // for older versions of handlebars, use block.push(context(this));
 });
 
 hbs.registerHelper('block', function(name) {
@@ -36,6 +37,17 @@ hbs.registerHelper('block', function(name) {
     // clear the block
     blocks[name] = [];
     return val;
+});
+
+hbs.registerHelper('markdown', function(options){
+
+hbs.registerHelper('markdown', function(options){
+    // var source = marked(options.fn());
+    // console.log(options.hash);
+    // console.log(options.data);
+    // var template = hbs.compile(source);
+    // return template(this);
+    return marked(options.fn(this));
 });
 
 app.use(favicon());
