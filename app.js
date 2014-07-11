@@ -40,13 +40,6 @@ hbs.registerHelper('block', function(name) {
 });
 
 hbs.registerHelper('markdown', function(options){
-
-hbs.registerHelper('markdown', function(options){
-    // var source = marked(options.fn());
-    // console.log(options.hash);
-    // console.log(options.data);
-    // var template = hbs.compile(source);
-    // return template(this);
     return marked(options.fn(this));
 });
 
