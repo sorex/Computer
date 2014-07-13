@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 		}
 	});
 
-    database('localhost','computer',function(err, db){
+    database('localhost','computerdb',function(err, db){
         if (err)
         {
             console.error(err);

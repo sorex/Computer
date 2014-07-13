@@ -4,15 +4,15 @@ var connections = {};
 
 function setup(db) {
   var materials = db.define('materials', {
-    'GUID': {
+    'UUID': {
       type: 'text',
       key: true,
       required: true,
-      size: 32
+      size: 36
     },
     'TypeID': {
       type: 'text',
-      size: 32
+      size: 36
     },
     'Name': {
       type: 'text',
