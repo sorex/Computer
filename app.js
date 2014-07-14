@@ -5,6 +5,8 @@ var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 
+var session      = require('express-session');
+var SessionStore = require('express-mysql-session');
 var hbs          = require('hbs');
 var marked       = require('marked');
 
@@ -50,12 +52,24 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret: 'session_cookie_secret',
+    resave: true,
+    saveUninitialized: true,
+    store: new SessionStore({
+        host: 'localhost',
+        port: 3306,
+        user: 'root',
+        password: 'p@ssw0rd',
+        database: 'session_test'
+    })
+}));
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/notebooks', notebooks);
 app.use('/tablets', tablets);
 app.use('/phones', phones);
-
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
