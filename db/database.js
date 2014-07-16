@@ -34,6 +34,9 @@ function setup(db) {
     'Brand': {
       type: 'text',
       size: 200
+    },
+    'Money':{
+      type: 'text'
     }
   });
 }

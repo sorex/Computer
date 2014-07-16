@@ -32,27 +32,40 @@ router.get('/', function(req, res) {
     session.save();
 
 
-    // database('localhost','computerdb',function(err, db){
-    //     if (err)
-    //     {
-    //         console.error(err);
-    //         return;
-    //     }
+    database('localhost','computerdb',function(err, db){
+        if (err)
+        {
+            console.error(err);
+            return;
+        }
 
-    //     var newRecord = {};
-    //     newRecord.GUID = 'guid';
-    //     newRecord.TypeID = 'test type';
-    //     newRecord.Name = 'Jasper';
-    //     newRecord.PublishDate = new Date();
-    //     newRecord.CreateDate = new Date();
-    //     newRecord.Status = 1;
-    //     newRecord.Brand = 'this is a test';
+        // 添加
+        var newRecord = {};
+        newRecord.UUID = 'guid';
+        newRecord.TypeID = 'test type';
+        newRecord.Name = 'Jasper';
+        newRecord.PublishDate = new Date();
+        newRecord.CreateDate = new Date();
+        newRecord.Status = 1;
+        newRecord.Brand = 'a';
+        newRecord.Money = '23.0005';
 
-    //     db.models.materials.create(newRecord, function(err, results){
-    //         console.log('results');
-    //     });
+        db.models.materials.create(newRecord, function(err, results){
+            var show = "UUID:" + results.UUID + " Money:" + results.Money;
+            console.log(show);
+        });
 
-    // });
+        db.models.materials.find({
+            Brand: 'a'
+        }, function(err, results) {
+            if (err) return err;
+            for (var i = 0; i < results.length; i++) {
+                var show = "UUID:" + results[i].UUID + " Status:"+results[i].Status+" Money:" + results[i].Money;
+                console.log(show);
+            };
+        });
+
+    });
 });
 
 module.exports = router;
